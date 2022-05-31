@@ -4,7 +4,7 @@ import './Login.css'
 import { useNavigate } from 'react-router-dom'
 const Login = ()=>{
     const bgImage = {
-        backgroundImage : `url('/assests/images/shutterstock_348320018.png')`
+        backgroundImage : `url('/assests/shutterstock_348320018.png')`
         }
         const [email,setEmail]=useState(" ");
         const[password,setPassword]=useState(" ")

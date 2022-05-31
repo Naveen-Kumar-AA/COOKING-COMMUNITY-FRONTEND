@@ -4,7 +4,7 @@ import { Navbar, Container, Row } from "react-bootstrap"
 import './Homepage.css'
 const Homepage = () => {
     const bgImage = {
-        backgroundImage: `url('/assests/images/shutterstock_348320018.png')`,
+        backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
     return (
@@ -42,7 +42,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/breakfast.png" class="card-img" />
+                                <img src="./assests/breakfast.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Breakfast</div>
@@ -56,7 +56,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/lunch.png" class="card-img" />
+                                <img src="./assests/lunch.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Lunch</div>
@@ -70,7 +70,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/snacks.png" class="card-img" />
+                                <img src="./assests/snacks.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Snacks</div>
@@ -84,7 +84,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/dinner.png" class="card-img" />
+                                <img src="./assests/dinner.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Dinner</div>
@@ -98,7 +98,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/drinks.png" class="card-img" />
+                                <img src="./assests/drinks.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Drinks</div>
@@ -112,7 +112,7 @@ const Homepage = () => {
                     <div class="card col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-4 my-3 mx-auto text-center">
                         <div class="row">
                             <div class="col-6 px-0 mx-0">
-                                <img src="./assests/images/nightlife.png" class="card-img" />
+                                <img src="./assests/nightlife.png" class="card-img" />
                             </div>
                             <div class="col-6 px-3 py-3">
                                 <div class="card-title">Desserts</div>

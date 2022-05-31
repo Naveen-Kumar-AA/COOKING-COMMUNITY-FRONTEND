@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import React,{useState} from 'react'
-const Signup = () => {
+const SignUp = () => {
     const bgImage = {
         backgroundImage : `url('/assests/images/shutterstock_348320018.png')`
         }
@@ -43,4 +43,4 @@ const Signup = () => {
     );
 }
 
-export default Signup
+export default SignUp
