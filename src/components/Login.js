@@ -2,7 +2,28 @@ import React,{useState} from 'react'
 import { Button } from 'react-bootstrap'
 import './Login.css' 
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
+
 const Login = ()=>{
+
+    const checkLogin = (user) => {
+        axios.post('http://localhost:3001/check-user-password',user).then(
+        (response) => { console.log(response.data[0]); 
+            if(response.data[0])
+                navigate('/Homepage'); 
+            else{
+                console.log("enter a valid username and password!!!")
+            }
+        
+        }
+        )
+        .catch(
+            (err) => {
+            console.log(err)
+        });
+    }
+
     const bgImage = {
         backgroundImage : `url('/assests/shutterstock_348320018.png')`
         }
@@ -28,7 +49,19 @@ const Login = ()=>{
                             <br/>
                             <input type="checkbox" id='Remember'/>Remember me
                                 <br/>
-                            <Button type='submit' className='w-100 mt-3' onClick={()=>navigate('/Homepage')}>Login</Button>
+                            <Button type='submit' className='w-100 mt-3' onClick={()=> { 
+                                const response = checkLogin({
+                                    "username" : email,
+                                    "password" : password
+                            })
+                            if(response.length === 1) {
+                                navigate('/Homepage');
+                            }
+                            else{
+                                return
+                            }
+                                // navigate('/Homepage'); 
+                            }}>Login</Button>
                             <h5 className='text-center mt-4'>Don't have an account?</h5>
                             <Button className='w-100 mt-2' onClick={()=>navigate("/Signup")}>Sign Up</Button>
                         </div>

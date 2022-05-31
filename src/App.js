@@ -3,10 +3,13 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Homepage from './components/Homepage'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+
 //This component is also called default /root component
 // Component is a function
 const App =()=>
 {
+
+
   //Emits HTML (JSX) It returns HTML but under the hood it is JS
   //
   return(
