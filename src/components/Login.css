@@ -1,0 +1,31 @@
+banner {
+    width: 110%;
+    height: 100%;
+   /* background-image:url('/assests/images/shutterstock_348320018.png')*/
+  }
+
+  .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Control the left side */
+  .left {
+    left: 0;
+    background-color: #111;
+  }
+  
+  /* Control the right side */
+  .right {
+    right: 0;
+    background-color:white;
+  }
+
+  .forms{
+      align-content: center;
+  }

@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './components/Login'
+import Signup from './components/Signup'
+import Homepage from './components/Homepage'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+//This component is also called default /root component
+// Component is a function
+const App =()=>
+{
+  //Emits HTML (JSX) It returns HTML but under the hood it is JS
+  //
+  return(
+      <Router>
+          <Routes>
+              <Route path='/' element={<Login/>}/>
+              <Route path='/Signup' element={<Signup/>}/>
+              <Route path='/Homepage' element={<Homepage/>}/>
+        </Routes>
+      </Router> 
+    );
 }
 
 export default App;
