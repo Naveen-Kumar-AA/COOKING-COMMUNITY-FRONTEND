@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import React,{useState} from 'react'
 const SignUp = () => {
     const bgImage = {
-        backgroundImage : `url('/assests/images/shutterstock_348320018.png')`
+        backgroundImage : `url('/assests/shutterstock_348320018.png')`
         }
     const [fname,setFname]=useState(" ")
     const [lname,setLname]=useState(" ")

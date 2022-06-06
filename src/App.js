@@ -2,6 +2,7 @@
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Homepage from './components/Homepage'
+import Profile from './components/Profile'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
 //This component is also called default /root component
@@ -18,6 +19,7 @@ const App =()=>
               <Route path='/' element={<Login/>}/>
               <Route path='/Signup' element={<SignUp/>}/>
               <Route path='/Homepage' element={<Homepage/>}/>
+              <Route path='/Profile' element={<Profile/>}/>
         </Routes>
       </Router> 
     );
