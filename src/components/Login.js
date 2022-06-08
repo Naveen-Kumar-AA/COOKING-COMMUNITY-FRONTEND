@@ -54,13 +54,6 @@ const Login = ()=>{
                                     "username" : email,
                                     "password" : password
                             })
-                            if(response.length === 1) {
-                                navigate('/Homepage');
-                            }
-                            else{
-                                return
-                            }
-                                // navigate('/Homepage'); 
                             }}>Login</Button>
                             <h5 className='text-center mt-4'>Don't have an account?</h5>
                             <Button className='w-100 mt-2' onClick={()=>navigate("/Signup")}>Sign Up</Button>

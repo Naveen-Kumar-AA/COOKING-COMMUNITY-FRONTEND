@@ -1,7 +1,6 @@
-import { Button } from 'react-bootstrap'
 import React from "react"
 import { useNavigate } from 'react-router-dom'
-import { Navbar, NavDropdown ,Nav} from "react-bootstrap"
+import { Navbar, NavDropdown ,Nav,Button} from "react-bootstrap"
 import './Homepage.css'
 import './Profile'
 const Homepage = () => {
