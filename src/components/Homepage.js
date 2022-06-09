@@ -11,13 +11,11 @@ const Homepage = () => {
         height: 400
     }
     const [arr, setArr] = useState([])
-    const Profile =()=>
-    {
+    const Profile = () => {
         axios.get(`http://localhost:3001/profile/${data}`).then(
             (response) => {
                 console.log(response.data)
-                if(response.data)
-                {
+                if (response.data) {
                     setArr(response.data)
                     navigate('/Profile')
                 }
@@ -28,7 +26,7 @@ const Homepage = () => {
     }
     const data = sessionStorage.getItem('Username')
     const navigate = useNavigate()
-    sessionStorage.setItem('User_details',arr)
+    sessionStorage.setItem('User_details', arr)
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -56,14 +54,26 @@ const Homepage = () => {
                                 title={data}
                                 menuVariant="dark"
                             >
-                                <NavDropdown.Item onClick={() =>{
+                                <NavDropdown.Item onClick={() => {
                                     Profile()
                                 }
-                            }>Profile</NavDropdown.Item>
+                                }>Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={() => navigate("/")}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
+                        <div className="ms-5">
+                            <div className="restaurantSelector">
+                                <input className="restaurantsinput ps-5 py-3 pe-2 w-100" type="text" placeholder="Search for restaurants" />
+                                <div className="search-icon ms-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search "
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </Navbar.Collapse>
                 </Navbar>
             </div>
@@ -88,7 +98,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button onClick={()=>navigate("/Homepage/Breakfast")}>click</Button>
+                                <Button onClick={() => navigate("/Homepage/Breakfast")}>click</Button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +112,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Lunch")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -116,7 +126,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Snacks")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +140,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Dinner")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -144,7 +154,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Drinks")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -158,7 +168,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Desserts")}>Click</Button>
                             </div>
                         </div>
                     </div>
