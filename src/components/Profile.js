@@ -2,6 +2,9 @@ import { Navbar ,Button} from "react-bootstrap"
 import { useNavigate } from "react-router"
 
 const Profile = () => {
+  const data = sessionStorage.getItem('Username')
+  const array = sessionStorage.getItem('User_details')
+  console.log(array)
   const navigate=useNavigate()
   return (
     <div className='container-fluid'>

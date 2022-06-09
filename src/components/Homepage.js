@@ -1,16 +1,34 @@
-import React from "react"
-import { useNavigate } from 'react-router-dom'
-import { Navbar, NavDropdown ,Nav,Button} from "react-bootstrap"
+import React, { useState } from "react"
+import { useNavigate } from "react-router"
+import { Navbar, NavDropdown, Nav, Button } from "react-bootstrap"
 import './Homepage.css'
 import './Profile'
+import axios from "axios"
+
 const Homepage = () => {
     const bgImage = {
         backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
+    const [arr, setArr] = useState([])
+    const Profile =()=>
+    {
+        axios.get(`http://localhost:3001/profile/${data}`).then(
+            (response) => {
+                console.log(response.data)
+                if(response.data)
+                {
+                    setArr(response.data)
+                    navigate('/Profile')
+                }
+            }
+        ).catch((err) => {
+            console.log(err)
+        })
+    }
     const data = sessionStorage.getItem('Username')
-    console.log(data)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
+    sessionStorage.setItem('User_details',arr)
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -35,12 +53,15 @@ const Homepage = () => {
                         <Nav>
                             <NavDropdown
                                 id="nav-dropdown-dark-example"
-                                title = {data}
+                                title={data}
                                 menuVariant="dark"
                             >
-                                <NavDropdown.Item onClick={()=>navigate("/Profile")}>Profile</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() =>{
+                                    Profile()
+                                }
+                            }>Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={()=>navigate("/")}>Logout</NavDropdown.Item>
+                                <NavDropdown.Item onClick={() => navigate("/")}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
@@ -67,7 +88,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>click</Button>
+                                <Button onClick={()=>navigate("/Homepage/Breakfast")}>click</Button>
                             </div>
                         </div>
                     </div>
