@@ -2,7 +2,7 @@ import { Navbar ,Button} from "react-bootstrap"
 import { useNavigate } from "react-router"
 
 const Profile = () => {
-  const navigate = useNavigate()
+  const navigate=useNavigate()
   return (
     <div className='container-fluid'>
       <div className='row'>

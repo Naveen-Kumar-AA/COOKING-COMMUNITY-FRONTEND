@@ -42,8 +42,8 @@ const SignUp = () => {
                 <form className="p-2" onSubmit={handleSubmit}>
                     <h2 className="text-center mt-2">Sign Up</h2>
                     <div className="formGroup w-100 px-4">
-                        <label for="username" className='form-label'>User Name</label>
-                        <input type='text' className='form-control' id='username' placeholder='Enter a username' onChange={(e)=>setUsername(e.target.value)}/>
+                        <label for="u_name" className='form-label'>User Name</label>
+                        <input type='text' className='form-control' id='u_name' placeholder='Enter a username' onChange={(e)=>setUsername(e.target.value)}/>
                         <label for="fname" className="form-label ">First Name</label>
                         <input type="text" className="form-control" id="fname" placeholder="Enter your first name" onChange={(e) => setFname(e.target.value)} />
                         <label for="lname" className="form-label">Last Name</label>

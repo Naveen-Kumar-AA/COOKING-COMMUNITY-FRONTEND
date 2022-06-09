@@ -8,6 +8,8 @@ const Homepage = () => {
         backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
+    const data = sessionStorage.getItem('Username')
+    console.log(data)
     const navigate=useNavigate()
     return (
         <div className='container-fluid'>
@@ -33,7 +35,7 @@ const Homepage = () => {
                         <Nav>
                             <NavDropdown
                                 id="nav-dropdown-dark-example"
-                                title="Sakthi_25"
+                                title = {data}
                                 menuVariant="dark"
                             >
                                 <NavDropdown.Item onClick={()=>navigate("/Profile")}>Profile</NavDropdown.Item>
