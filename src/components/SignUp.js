@@ -2,8 +2,26 @@ import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import React,{useState} from 'react'
 const SignUp = () => {
+
+    // const sendSignUpReq = (user_details) => {
+    //     axios.post('http://localhost:3001/sign-up',user_details).then(
+    //     (response) => { console.log(response.data[0]); 
+    //         if(response.data[0])
+    //             navigate('/Homepage'); 
+    //         else{
+    //             console.log("enter a valid username and password!!!")
+    //         }
+    //     }
+    //     )
+    //     .catch(
+    //         (err) => {
+    //         console.log(err)
+    //     });
+    // }
+
+    
     const bgImage = {
-        backgroundImage : `url('/assests/images/shutterstock_348320018.png')`
+        backgroundImage : `url('/assests/shutterstock_348320018.png')`
         }
     const [fname,setFname]=useState(" ")
     const [lname,setLname]=useState(" ")
@@ -35,7 +53,19 @@ const SignUp = () => {
                     <input type="password" className="form-control" id="pswd" placeholder="Type your password" onChange={(e)=>setPassword(e.target.value)}/>
                     <label for="pswd" className="form-label">Confirm Password</label>
                     <input type="password" className="form-control" id="pswd" placeholder="Re-type your password" onChange={(e)=>setCpasswd(e.target.value)}/>
-                    <Button type='submit' className='w-50 mx-5 mt-3' onClick={()=>navigate('/')}>Create Account</Button>
+                    <Button type='submit' className='w-50 mx-5 mt-3' onClick={()=> { 
+                            //     const response = sendSignUpReq({
+                            //         "username" : "Naveen-17",
+                            //         "fname" : fname,
+                            //         "lname" : lname,
+                            //         "email" : email,
+                            //         "phn_number" : phnnumber,
+                            //         "password" : password,
+                            //         "cpasswd" : cpasswd
+                                    
+                            // }) 
+                        navigate('/Homepage')}}>Create Account</Button>
+                            
                 </div>
             </form>
             </div>
