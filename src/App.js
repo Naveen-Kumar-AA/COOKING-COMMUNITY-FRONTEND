@@ -8,6 +8,7 @@ import Snacks from './components/Snacks'
 import Drinks from './components/Drinks'
 import Dinner from './components/Dinner'
 import Desserts from './components/Desserts'
+import NewPost from './components/NewPost'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 
 //This component is also called default /root component
@@ -17,7 +18,6 @@ const App =()=>
 
 
   //Emits HTML (JSX) It returns HTML but under the hood it is JS
-  //
   return(
       <Router>
           <Routes>
@@ -31,6 +31,7 @@ const App =()=>
               <Route path='/Homepage/Drinks' element={<Drinks/>}/>
               <Route path='/Homepage/Dinner' element={<Dinner/>}/>
               <Route path='/Homepage/Desserts' element={<Desserts/>}/>
+              <Route path='/Homepage/NewPost' element={<NewPost/>}/>
         </Routes>
       </Router> 
     );

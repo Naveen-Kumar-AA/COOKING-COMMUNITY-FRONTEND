@@ -1,10 +1,11 @@
 import { Navbar ,Button} from "react-bootstrap"
 import { useNavigate } from "react-router"
-
+import { useState } from "react"
+import axios from "axios"
 const Profile = () => {
   const data = sessionStorage.getItem('Username')
   const array = sessionStorage.getItem('User_details')
-  console.log(array)
+  console.log(array[2])
   const navigate=useNavigate()
   return (
     <div className='container-fluid'>
