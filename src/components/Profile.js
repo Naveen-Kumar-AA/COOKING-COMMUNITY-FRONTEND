@@ -1,10 +1,23 @@
 import { Navbar ,Button} from "react-bootstrap"
 import { useNavigate } from "react-router"
+import { useState } from "react"
 
 const Profile = () => {
+  // const [profile_details, setProfileDetails] = useState([])
+  
   const data = sessionStorage.getItem('Username')
-  const array = sessionStorage.getItem('User_details')
-  console.log(array)
+  // setProfileDetails(sessionStorage.getItem('User_details'))
+  const profile_details = {
+    username : sessionStorage.getItem('User_name'),
+    first_name : sessionStorage.getItem('First_name'),
+    last_name : sessionStorage.getItem('Last_name'),
+    bio : sessionStorage.getItem('Bio'),
+    email : sessionStorage.getItem('Email'),
+    phn_number : sessionStorage.getItem('Phn_number')
+  }
+  // console.log(profile_details)
+
+    
   const navigate=useNavigate()
   return (
     <div className='container-fluid'>
@@ -19,6 +32,15 @@ const Profile = () => {
             </Button>
           </Navbar.Brand>
         </Navbar>
+      </div>
+
+      <div>
+        <h1>{profile_details.username}</h1>
+        <h1>{profile_details.first_name}</h1>
+        <h1>{profile_details.last_name}</h1>
+        <h1>{profile_details.bio}</h1>
+        <h1>{profile_details.email}</h1>
+        <h1>{profile_details.phn_number}</h1>
       </div>
     </div>
   )

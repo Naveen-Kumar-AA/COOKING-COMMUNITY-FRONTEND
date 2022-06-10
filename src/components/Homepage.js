@@ -10,13 +10,19 @@ const Homepage = () => {
         backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
-    const [arr, setArr] = useState([])
+    const [user_details, setUserDetails] = useState([])
     const Profile = () => {
         axios.get(`http://localhost:3001/profile/${data}`).then(
             (response) => {
                 console.log(response.data)
                 if (response.data) {
-                    setArr(response.data)
+                    // setUserDetails(response.data)
+                    sessionStorage.setItem('User_name', response.data.username)
+                    sessionStorage.setItem('First_name', response.data.fname)
+                    sessionStorage.setItem('Last_name', response.data.lname)
+                    sessionStorage.setItem('Bio', response.data.bio)
+                    sessionStorage.setItem('Email', response.data.email)
+                    sessionStorage.setItem('Phn_number', response.data.phn_number)
                     navigate('/Profile')
                 }
             }
@@ -26,7 +32,7 @@ const Homepage = () => {
     }
     const data = sessionStorage.getItem('Username')
     const navigate = useNavigate()
-    sessionStorage.setItem('User_details', arr)
+    // sessionStorage.setItem('User_details', user_details)
     return (
         <div className='container-fluid'>
             <div className='row'>
