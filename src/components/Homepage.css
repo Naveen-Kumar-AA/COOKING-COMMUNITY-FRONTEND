@@ -39,3 +39,21 @@
 .qs-subtitle{
     color: #8c96ab;
 }
+
+.restaurantSelector{
+    position: relative;
+}
+
+.restaurantsinput{
+    font-size: 20px;
+    width: 150%;
+    color: #636f88;
+}
+
+.search-icon{
+    width: 30px;
+    position: absolute;
+    bottom: 20px;
+    left: 5px;
+    color: #636f88;
+}
