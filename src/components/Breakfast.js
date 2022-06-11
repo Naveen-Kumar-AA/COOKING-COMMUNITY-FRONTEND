@@ -23,7 +23,7 @@ const Breakfast = () => {
                 <Navbar bg="primary" variant="dark">
                     <div className="mx-auto">
                         <div className="restaurantSelector">
-                            <input className="restaurantsinput ps-5 py-3 pe-2 w-100" type="text" placeholder="Search for restaurants" />
+                            <input className="restaurantsinput ps-5 py-3 pe-2 w-100" type="text" placeholder="Search for recipes" />
                             <div className="search-icon ms-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search "
                                     viewBox="0 0 16 16">
