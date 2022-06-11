@@ -25,7 +25,7 @@ const App =()=>
               <Route path='/Signup' element={<SignUp/>}/>
               <Route path='/Homepage' element={<Homepage/>}/>
               <Route path='/Profile' element={<Profile/>}/>
-              <Route path='/Homepage/Breakfast' element={<Breakfast/>}/>
+              <Route path='/Homepage/breakfast' element={<Breakfast/>}/>
               <Route path='/Homepage/Lunch' element={<Lunch/>}/>
               <Route path='/Homepage/Snacks' element={<Snacks/>}/>
               <Route path='/Homepage/Drinks' element={<Drinks/>}/>

@@ -11,6 +11,9 @@ const Homepage = () => {
         height: 400
     }
     const [user_details, setUserDetails] = useState([])
+
+    const [postDetails, setPostDetails] = useState([]);
+    
     const Profile = () => {
         axios.get(`http://localhost:3001/profile/${data}`).then(
             (response) => {
@@ -33,6 +36,15 @@ const Homepage = () => {
     const data = sessionStorage.getItem('Username')
     const navigate = useNavigate()
     // sessionStorage.setItem('User_details', user_details)
+
+    const getReqByMeal = (meal) => {
+        // axios.get(`http://localhost:3001/posts/${meal}`).then((response)=>{
+            navigate(`/Homepage/${meal}`)
+            // console.log(response)
+            // setPostDetails(response);
+        // })
+    }
+
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -104,7 +116,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button onClick={() => navigate("/Homepage/Breakfast")}>click</Button>
+                                <Button onClick={() => {getReqByMeal('breakfast')}}>click</Button>
                             </div>
                         </div>
                     </div>

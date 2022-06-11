@@ -1,7 +1,22 @@
 import { useNavigate } from "react-router"
 import { Navbar, Button, NavDropdown, Nav } from "react-bootstrap"
+import axios from "axios"
+import { useEffect, useState } from "react"
 const Breakfast = () => {
+
     const navigate = useNavigate()
+
+    const [postDetails, setPostDetails] = useState([]);
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:3001/posts/breakfast`).then((response) => {
+            console.log(response)
+            setPostDetails(response.data);
+        })
+
+    }, [])
+
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -34,6 +49,23 @@ const Breakfast = () => {
                     </Navbar.Brand>
                 </Navbar>
             </div>
+            <div>
+                {postDetails.length > 0 ? (
+                    postDetails.map((post, index) => (
+                        <div key={index}>
+                            {post.title}
+                            {post.meal}
+                            {post.cuisine}
+                            {post.recipe_content}
+                            {post.caption}
+                        </div>
+                    ))
+                ) : (
+                    <div>No Posts Found!!!</div>
+                )}
+
+            </div>
+
         </div>
     )
 }
