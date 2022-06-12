@@ -116,7 +116,8 @@ const NewPost = () => {
                                 "cuisine": cuisine,
                                 "recipe": recipe,
                                 "caption": caption
-                            })
+                            });
+                            navigate('/Homepage')
                         }}>Create new post</Button>
 
 
