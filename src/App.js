@@ -9,32 +9,31 @@ import Drinks from './components/Drinks'
 import Dinner from './components/Dinner'
 import Desserts from './components/Desserts'
 import NewPost from './components/NewPost'
-import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 //This component is also called default /root component
 // Component is a function
-const App =()=>
-{
+const App = () => {
 
 
   //Emits HTML (JSX) It returns HTML but under the hood it is JS
-  return(
-      <Router>
-          <Routes>
-              <Route path='/' element={<Login/>}/>
-              <Route path='/Signup' element={<SignUp/>}/>
-              <Route path='/Homepage' element={<Homepage/>}/>
-              <Route path='/Profile' element={<Profile/>}/>
-              <Route path='/Homepage/breakfast' element={<Breakfast/>}/>
-              <Route path='/Homepage/Lunch' element={<Lunch/>}/>
-              <Route path='/Homepage/Snacks' element={<Snacks/>}/>
-              <Route path='/Homepage/Drinks' element={<Drinks/>}/>
-              <Route path='/Homepage/Dinner' element={<Dinner/>}/>
-              <Route path='/Homepage/Desserts' element={<Desserts/>}/>
-              <Route path='/Homepage/NewPost' element={<NewPost/>}/>
-        </Routes>
-      </Router> 
-    );
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/Signup' element={<SignUp />} />
+        <Route path='/Homepage' element={<Homepage />} />
+        <Route path='/Profile' element={<Profile />} />
+        <Route path='/Homepage/breakfast' element={<Breakfast />} />
+        <Route path='/Homepage/Lunch' element={<Lunch />} />
+        <Route path='/Homepage/Snacks' element={<Snacks />} />
+        <Route path='/Homepage/Drinks' element={<Drinks />} />
+        <Route path='/Homepage/Dinner' element={<Dinner />} />
+        <Route path='/Homepage/Desserts' element={<Desserts />} />
+        <Route path='/Homepage/NewPost' element={<NewPost />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
