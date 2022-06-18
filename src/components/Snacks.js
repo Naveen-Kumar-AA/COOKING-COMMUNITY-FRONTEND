@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import { Navbar, Button } from "react-bootstrap"
 import axios from "axios"
 import { useState, useEffect } from "react"
-
+import Post from './Post'
 
 const Snacks = () => {
   const navigate = useNavigate()
@@ -50,34 +50,20 @@ const Snacks = () => {
       <div>
         {postDetails.length > 0 ? (
           postDetails.map((post, index) => (
-            <div key={index}>
-              {post.title}
-              {post.meal}
-              {post.cuisine}
-              {post.recipe_content}
-              {post.caption}
+            <div style={{
+              'display' : 'flex',
+              'marginTop' : '20px',
+              'justifyContent' : 'center'
+            }}>
+              <Post post={post} />
             </div>
           ))
         ) : (
           <div>No Posts Found!!!</div>
         )}
+
       </div>
-      {/* {
-        postDetails.map((post, index) => {
-          if (post) {
-            return <div key={index}>
-              {post.title}
-              {post.meal}
-              {post.cuisine}
-              {post.recipe_content}
-              {post.caption}
-            </div>
-          }
-          else {
-            return <div>No posts found!!!</div>
-          }
-        })
-      } */}
+      
 
 
     </div >

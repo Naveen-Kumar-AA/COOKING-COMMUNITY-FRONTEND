@@ -1,7 +1,7 @@
 import { Navbar, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
-import Drinks from "./Drinks"
 import axios from "axios"
+import Post from './Post'
 import { useState, useEffect } from "react"
 
 const Dinner = () => {
@@ -35,12 +35,12 @@ const Dinner = () => {
       <div>
         {postDetails.length > 0 ? (
           postDetails.map((post, index) => (
-            <div key={index}>
-              {post.title}
-              {post.meal}
-              {post.cuisine}
-              {post.recipe_content}
-              {post.caption}
+            <div style={{
+              'display' : 'flex',
+              'marginTop' : '20px',
+              'justifyContent' : 'center'
+            }}>
+              <Post post={post} />
             </div>
           ))
         ) : (

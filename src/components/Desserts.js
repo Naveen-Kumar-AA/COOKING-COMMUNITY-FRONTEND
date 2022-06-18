@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import { Navbar, Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import axios from "axios"
-
+import Post from './Post'
 
 
 const Desserts = () => {
@@ -37,12 +37,12 @@ const Desserts = () => {
       <div>
         {postDetails.length > 0 ? (
           postDetails.map((post, index) => (
-            <div key={index}>
-              {post.title}
-              {post.meal}
-              {post.cuisine}
-              {post.recipe_content}
-              {post.caption}
+            <div style={{
+              'display' : 'flex',
+              'marginTop' : '20px',
+              'justifyContent' : 'center'
+            }}>
+              <Post post={post} />
             </div>
           ))
         ) : (
@@ -50,7 +50,6 @@ const Desserts = () => {
         )}
 
       </div>
-
     </div>
   )
 }

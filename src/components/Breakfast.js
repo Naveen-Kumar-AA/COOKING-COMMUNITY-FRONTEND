@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router"
 import { Navbar, Button, NavDropdown, Nav } from "react-bootstrap"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import Post from './Post'
+import { useState, useEffect } from "react"
+
 const Breakfast = () => {
 
     const navigate = useNavigate()
@@ -16,6 +18,11 @@ const Breakfast = () => {
         })
 
     }, [])
+
+
+    
+
+
 
     return (
         <div className='container-fluid'>
@@ -52,13 +59,15 @@ const Breakfast = () => {
             <div>
                 {postDetails.length > 0 ? (
                     postDetails.map((post, index) => (
-                        <div key={index}>
-                            {post.title}
-                            {post.meal}
-                            {post.cuisine}
-                            {post.recipe_content}
-                            {post.caption}
-                        </div>
+                        <div style={{
+                            'display' : 'flex',
+                            'marginTop' : '20px',
+                            'justifyContent' : 'center'
+                          }}>
+                            <Post post={post} />
+                          </div>
+
+                        
                     ))
                 ) : (
                     <div>No Posts Found!!!</div>
