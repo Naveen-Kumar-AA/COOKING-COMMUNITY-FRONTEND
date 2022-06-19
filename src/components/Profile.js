@@ -1,25 +1,46 @@
 import { Navbar, Button } from "react-bootstrap"
 import { useNavigate } from "react-router"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
+import { useLocation } from 'react-router-dom'
+
+
 
 const Profile = () => {
-   
-  const data = sessionStorage.getItem('Username')
+  const location = useLocation();
+  const username = location.pathname.slice()
   
-  const profile_details = {
-    username: sessionStorage.getItem('User_name'),
-    first_name: sessionStorage.getItem('First_name'),
-    last_name: sessionStorage.getItem('Last_name'),
-    bio: sessionStorage.getItem('Bio'),
-    email: sessionStorage.getItem('Email'),
-    phn_number: sessionStorage.getItem('Phn_number')
-  }
-  console.log(profile_details)
+  const data = sessionStorage.getItem('Username')
 
+  // const profile_details = {
+  //   username: sessionStorage.getItem('User_name'),
+  //   first_name: sessionStorage.getItem('First_name'),
+  //   last_name: sessionStorage.getItem('Last_name'),
+  //   bio: sessionStorage.getItem('Bio'),
+  //   email: sessionStorage.getItem('Email'),
+  //   phn_number: sessionStorage.getItem('Phn_number')
+  // }
+  // console.log(profile_details)
+  const [profile_details, setProfileDetails] = useState([])
 
-  const array = sessionStorage.getItem('User_details')
+  useEffect(() => {
+    axios.get(`http://localhost:3001/Profile/${data}`).then((result) => {
+      console.log(result.data)
+      setProfileDetails(result.data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
+
+  // const array = sessionStorage.getItem('User_details')
   const navigate = useNavigate()
+
+  const editProfile = () => {
+    navigate('/edit-profile')
+  }
+
+
+
   return (
     <div className='container-fluid'>
       <div className='row'>
@@ -36,12 +57,20 @@ const Profile = () => {
       </div>
 
       <div>
-        <h1>{profile_details.username}</h1>
-        <h1>{profile_details.first_name}</h1>
-        <h1>{profile_details.last_name}</h1>
-        <h1>{profile_details.bio}</h1>
-        <h1>{profile_details.email}</h1>
-        <h1>{profile_details.phn_number}</h1>
+        <h4>Username : {profile_details.username}</h4>
+        <h4>First name : {profile_details.first_name}</h4>
+        <h4>Last name : {profile_details.last_name}</h4>
+        <h4>Bio : {profile_details.bio}</h4>
+        <h4>Email : {profile_details.email}</h4>
+        <h4>Phone number : {profile_details.phn_number}</h4>
+        <h4>followers : {profile_details.no_of_followers}</h4>
+        <h4>following : {profile_details.no_of_following}</h4>
+      </div>
+
+      <div>
+        <Button onClick={()=>{
+          editProfile();
+        }}>Edit Profile</Button>
       </div>
     </div>
   )

@@ -9,7 +9,10 @@ import Drinks from './components/Drinks'
 import Dinner from './components/Dinner'
 import Desserts from './components/Desserts'
 import NewPost from './components/NewPost'
+import OtherProfile from './components/OtherProfile'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import EditProfile from './components/EditProfile'
 
 //This component is also called default /root component
 // Component is a function
@@ -31,6 +34,8 @@ const App = () => {
         <Route path='/Homepage/Dinner' element={<Dinner />} />
         <Route path='/Homepage/Desserts' element={<Desserts />} />
         <Route path='/Homepage/NewPost' element={<NewPost />} />
+        <Route path='/Homepage/:username' element={<OtherProfile />} />
+        <Route path='/edit-profile' element={<EditProfile />} />
       </Routes>
     </Router>
   );
