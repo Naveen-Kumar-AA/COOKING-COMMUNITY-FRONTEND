@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
@@ -16,8 +16,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-
+import axios from "axios";
+import Tooltip from '@mui/material/Tooltip';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 
 
 const ExpandMore = styled((props) => {
@@ -34,15 +37,59 @@ const ExpandMore = styled((props) => {
 
 
 const Post = ({ post }) => {
-
     const [expanded, setExpanded] = useState(false);
-
+    const data = sessionStorage.getItem('Username')
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
+    const [likesCount, setLikesCount] = useState(post.likes);
+    const [likeStatus, setLikeStatus] = useState(0)
+
+    const likePost = (postID, userID) => {
+        const body = {
+            postID: postID,
+            userID: userID
+        }
+        axios.post(`http://localhost:3001/like-post`, body).then((response) => {
+            setLikesCount(likesCount + 1)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const disLikePost = (postID, userID) => {
+        const body = {
+            postID: postID,
+            userID: userID
+        }
+        axios.post(`http://localhost:3001/dislike-post`, body).then((response) => {
+            console.log(response)
+            setLikesCount(likesCount - 1)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+    useEffect(() => {
+
+        const req_body = {
+            postID: post.postID,
+            userID: data
+        }
+        const response = axios.post('http://localhost:3001/is-liked', req_body).then((res) => {
+            setLikeStatus(res.data.status);
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    }, [])
+
     return (
-        <Card sx={{ maxWidth: '100%' }} style={{'width' : '60%'}}>
+        <Card sx={{ maxWidth: '100%' }} style={{ 'width': '60%' }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: blue[800] }} aria-label="recipe">
@@ -64,20 +111,50 @@ const Post = ({ post }) => {
                 alt="Sorry! Image not found."
             />
             <CardContent>
-                <Typography variant="h5" color="text.primary">
+                <Typography variant="button" fontSize={'23px'} color="text.primary">
                     {post.title}
+                </Typography>
+                <Typography variant="h6" color="text.primary">
+                    {post.meal}
+                </Typography>
+                <Typography variant="h6" color="text.primary">
+                    {post.cuisine}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {post.caption}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
+                {/* {console.log(likeStatus)}   */}
+                {
+                    <Tooltip title="like">
+                        <Checkbox checked={likeStatus ? true : false} icon={<FavoriteBorder />} checkedIcon={<Favorite />} onChange={(e) => {
+                            if (e.target.checked) {
+                                setLikeStatus(1);
+                                console.log("IF: ", likeStatus)
+                                likePost(post.postID, data)
+                            }
+                            else {
+                                setLikeStatus(0);
+                                console.log("ELSE: ", likeStatus)
+                                disLikePost(post.postID, data)
+                            }
+                        }} />
+                    </Tooltip>
+                    // :
+                    // <Tooltip title="like">
+                    //     {/* {console.log(likeStatus)} */}
+                    //     <Checkbox checked="true" icon={<FavoriteBorder />} checkedIcon={<Favorite />} onChange={(e) => {
+                    //         if (e.target.checked) {
+                    //             likePost(post.postID, post.username)
+                    //         }
+                    //         else {
+                    //             disLikePost(post.postID, post.username)
+                    //         }
+                    //     }} />
+                    // </Tooltip>
+                }
+                <Typography>{likesCount}</Typography>
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}

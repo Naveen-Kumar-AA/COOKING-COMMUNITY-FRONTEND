@@ -58,8 +58,7 @@ const Homepage = () => {
         })
     }
 
-
-    useEffect(() => {
+    const searchRequest = () => {
         axios.get(`http://localhost:3001/search/${search}`).then((response) => {
             console.log(response.data);
             const resp = response.data.map((user_id, index) => (
@@ -70,12 +69,12 @@ const Homepage = () => {
         }).catch((err) => {
             console.log(err)
         })
-    }, [search])
+    }
+
 
     useEffect(() => {
-        console.log(search)
-    }, [search]);
-
+        searchRequest();
+    }, [search])
 
 
     return (
@@ -138,7 +137,7 @@ const Homepage = () => {
                                 // console.log("On select", e.target.value);
                             }}
                             renderOption={(props, option) => (
-                                <li {...props} onClick={(e) => {e.preventDefault(); navigate(`/Homepage/${option.label}`);}}>{option.label}</li>
+                                <li {...props} onClick={(e) => { e.preventDefault(); navigate(`/Homepage/${option.label}`); }}>{option.label}</li>
                             )}
                             renderInput={(params) => <TextField {...params} label="Search..." onChange={(e) => { setSearchResults([]); setSearch(e.target.value); }} />}
                         />

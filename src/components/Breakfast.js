@@ -13,15 +13,11 @@ const Breakfast = () => {
     useEffect(() => {
 
         axios.get(`http://localhost:3001/posts/breakfast`).then((response) => {
-            console.log(response)
+            console.log(response.data)
             setPostDetails(response.data);
         })
 
     }, [])
-
-
-    
-
 
 
     return (
@@ -59,15 +55,13 @@ const Breakfast = () => {
             <div>
                 {postDetails.length > 0 ? (
                     postDetails.map((post, index) => (
-                        <div style={{
-                            'display' : 'flex',
-                            'marginTop' : '20px',
-                            'justifyContent' : 'center'
-                          }}>
+                        <div key={index} style={{
+                            'display': 'flex',
+                            'marginTop': '20px',
+                            'justifyContent': 'center'
+                        }}>
                             <Post post={post} />
-                          </div>
-
-                        
+                        </div>
                     ))
                 ) : (
                     <div>No Posts Found!!!</div>

@@ -11,25 +11,27 @@ const EditProfile = () => {
 
 
     const [profile_details, setProfileDetails] = useState([])
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState([])
+    const [bio, setBio] = useState([])
+    const [email, setEmail] = useState([])
+    const [phn_no, setPhnNo] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:3001/Profile/${data}`).then((result) => {
             console.log(result.data)
+            console.log(result.data.first_name);
+            setFirstName(result.data.first_name);
+            setLastName(result.data.last_name);
+            setBio(result.data.bio);
+            setEmail(result.data.email);
+            setPhnNo(result.data.phn_number);
             setProfileDetails(result.data)
             // console.log(profile_details.first_name)
         }).catch((err) => {
             console.log(err)
         })
     }, [])
-
-    const [firstName, setFirstName] = useState([])
-    const [lastName, setLastName] = useState([])
-    const [bio, setBio] = useState([])
-    const [email, setEmail] = useState([])
-    const [phn_no, setPhnNo] = useState([])
-    
-
-
 
 
     const navigate = useNavigate()
@@ -112,12 +114,12 @@ const EditProfile = () => {
                     }}>
 
 
-                        <Typography variant="overline" display="block" gutterBottom>overline text</Typography>
-                        <TextField id="outlined-basic" label="First Name" variant="outlined" onChange={(e)=>{setFirstName(e.target.value)}}/>
-                        <TextField id="outlined-basic" label="Last Name" variant="outlined" onChange={(e)=>{setLastName(e.target.value)}}/>
-                        <TextField id="outlined-basic" label="Bio" variant="outlined" onChange={(e)=>{setBio(e.target.value)}}/>
-                        <TextField id="outlined-basic" label="Email" variant="outlined" onChange={(e)=>{setEmail(e.target.value)}}/>
-                        <TextField id="outlined-basic" label="Phone Number" variant="outlined" onChange={(e)=>{setPhnNo(e.target.value)}}/>
+                        <Typography variant="overline" display="block" gutterBottom>Edit your profile!</Typography>
+                        <TextField style={{'marginTop' : '10px'}} value={firstName} id="outlined-basic" label="First Name" variant="outlined" onChange={(e)=>{setFirstName(e.target.value)}}/>
+                        <TextField style={{'marginTop' : '10px'}} value={lastName} id="outlined-basic" label="Last Name" variant="outlined" onChange={(e)=>{setLastName(e.target.value)}}/>
+                        <TextField style={{'marginTop' : '10px'}} value={bio} id="outlined-basic" label="Bio" variant="outlined" onChange={(e)=>{setBio(e.target.value)}}/>
+                        <TextField style={{'marginTop' : '10px'}} value={email} id="outlined-basic" label="Email" variant="outlined" onChange={(e)=>{setEmail(e.target.value)}}/>
+                        <TextField style={{'marginTop' : '10px'}} value={phn_no} id="outlined-basic" label="Phone Number" variant="outlined" onChange={(e)=>{setPhnNo(e.target.value)}}/>
                         <Button style={{ 'marginTop': '20px', 'marginRight': '200px', 'marginLeft': '200px' }} variant="contained" onClick={() => {
                             submit()
                         }}>Submit</Button>
