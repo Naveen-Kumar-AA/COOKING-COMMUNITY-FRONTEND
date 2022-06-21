@@ -1,31 +1,154 @@
-import { Button } from 'react-bootstrap'
-import React from "react"
-import { Navbar, Container, Row } from "react-bootstrap"
+import React, { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
+import { Navbar, NavDropdown, Nav, Button } from "react-bootstrap"
 import './Homepage.css'
+import './Profile'
+import axios from "axios"
+import SearchIcon from '@mui/icons-material/Search';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
 const Homepage = () => {
     const bgImage = {
         backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
+    const [user_details, setUserDetails] = useState([])
+
+    const [postDetails, setPostDetails] = useState([]);
+
+    const [searchResults, setSearchResults] = useState([])
+
+    const [search, setSearch] = useState('')
+
+    const Profile = () => {
+        axios.get(`http://localhost:3001/profile/${data}`).then(
+            (response) => {
+                console.log(response.data)
+                if (response.data) {
+                    sessionStorage.setItem('User_name', response.data.username)
+                    sessionStorage.setItem('First_name', response.data.fname)
+                    sessionStorage.setItem('Last_name', response.data.lname)
+                    sessionStorage.setItem('Bio', response.data.bio)
+                    sessionStorage.setItem('Email', response.data.email)
+                    sessionStorage.setItem('Phn_number', response.data.phn_number)
+                    navigate('/Profile')
+                }
+            }
+        ).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+    // console.log(search)
+    const data = sessionStorage.getItem('Username')
+    const navigate = useNavigate()
+
+    const getReqByMeal = (meal) => {
+        navigate(`/Homepage/${meal}`)
+    }
+
+    const doSearchForProfiles = (search_value) => {
+        axios.get(`http://localhost:3001/search/${search_value}`).then((response) => {
+            console.log(response.data);
+            setSearchResults(response.data);
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    const searchRequest = () => {
+        axios.get(`http://localhost:3001/search/${search}`).then((response) => {
+            console.log(response.data);
+            const resp = response.data.map((user_id, index) => (
+                { label: user_id[0] }
+            ))
+            console.log(resp)
+            setSearchResults(resp);
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+    useEffect(() => {
+        searchRequest();
+    }, [search])
+
+
     return (
         <div className='container-fluid'>
             <div className='row'>
                 <Navbar bg="primary" variant="dark">
                     <Navbar.Brand>
-                        <Button>
-                            <svg xmlns="http://www.w3.org/2000/svg" classNameName='mx-3' width="30" height="30" fill="yellow" className="bi bi-house-fill" viewBox="0 0 16 16">
+                        <Button className='mx-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" classNameName='mx-3' width="30" height="30" fill="white" className="bi bi-house-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
                                 <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                             </svg>
                         </Button>
-                        <  Button>
+
+                        <Button className='mx-2' onClick={() => navigate('/Homepage/NewPost')}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                             </svg>
                         </Button>
-
                     </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbar-dark-example" />
+                    <Navbar.Collapse id="navbar-dark-example">
+                        <Nav>
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title={data}
+                                menuVariant="dark"
+                            >
+                                <NavDropdown.Item onClick={() => {
+                                    Profile()
+                                }
+                                }>Profile</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={() => navigate("/")}>Logout</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                        {/* <div className="ms-5">
+                            <div className="restaurantSelector">
+                                <input className="restaurantsinput ps-5 py-3 pe-2 w-100" type="text" placeholder="Search for recipes" onChange={(e)=>setSearch(e.target.value)}/>
+                                <div className="search-icon ms-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search "
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div> */}
+                        {/* <div>
+                        <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e)=>{setSearch(e.target.value)}}/>
+                        </div> */}
+                        <Autocomplete
+                            style={{ 'width': '200px' }}
+                            disablePortal
+                            id="combo-box-demo"
+                            options={searchResults}
+                            onSelect={(e) => {
+                                setSearch(e.target.value);
+                                // console.log("On select", e.target.value);
+                            }}
+                            renderOption={(props, option) => (
+                                <li {...props} onClick={(e) => { e.preventDefault(); navigate(`/Homepage/${option.label}`); }}>{option.label}</li>
+                            )}
+                            renderInput={(params) => <TextField {...params} label="Search..." onChange={(e) => { setSearchResults([]); setSearch(e.target.value); }} />}
+                        />
+                        {/* <div>
+                        <Button style={{'height' : '55px'}} onClick={()=>{
+                            doSearchForProfiles(search)
+                        }}>
+                            <SearchIcon/>
+                        </Button>
+                        </div> */}
+                    </Navbar.Collapse>
                 </Navbar>
             </div>
             <div className='row' style={bgImage}>
@@ -49,7 +172,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>click</Button>
+                                <Button onClick={() => { getReqByMeal('breakfast') }}>click</Button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +186,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Lunch")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -77,7 +200,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                                <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Snacks")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -91,7 +214,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                            <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Dinner")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -105,7 +228,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                            <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Drinks")}>Click</Button>
                             </div>
                         </div>
                     </div>
@@ -119,7 +242,7 @@ const Homepage = () => {
                                 <div class="card-description">Start your day with
                                     exclusive breakfast
                                     options</div>
-                            <Button>Click</Button>
+                                <Button onClick={() => navigate("/Homepage/Desserts")}>Click</Button>
                             </div>
                         </div>
                     </div>
