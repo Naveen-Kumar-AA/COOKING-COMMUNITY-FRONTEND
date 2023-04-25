@@ -14,12 +14,10 @@ import OtherProfile from './components/OtherProfile'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import EditProfile from './components/EditProfile'
 
-//This component is also called default /root component
-// Component is a function
+
 const App = () => {
 
 
-  //Emits HTML (JSX) It returns HTML but under the hood it is JS
   return (
     <Router>
       <Routes>
