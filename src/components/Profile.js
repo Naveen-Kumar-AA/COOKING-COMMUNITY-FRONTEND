@@ -14,15 +14,6 @@ const Profile = () => {
   const username_color = blueGrey[800]
   const data = sessionStorage.getItem('Username')
 
-  // const profile_details = {
-  //   username: sessionStorage.getItem('User_name'),
-  //   first_name: sessionStorage.getItem('First_name'),
-  //   last_name: sessionStorage.getItem('Last_name'),
-  //   bio: sessionStorage.getItem('Bio'),
-  //   email: sessionStorage.getItem('Email'),
-  //   phn_number: sessionStorage.getItem('Phn_number')
-  // }
-  // console.log(profile_details)
   const [profile_details, setProfileDetails] = useState([])
   const [post_details, setPostDetails] = useState([])
   const [noOfPost, setNoOfPost] = useState([])
@@ -70,15 +61,7 @@ const Profile = () => {
         'display': 'flex',
         'justifyContent': 'center'
       }}>
-        {/* <h4>Username : {profile_details.username}</h4>
-        <h4>First name : {profile_details.first_name}</h4>
-        <h4>Last name : {profile_details.last_name}</h4>
-        <h4>Bio : {profile_details.bio}</h4>
-        <h4>Email : {profile_details.email}</h4>
-        <h4>Phone number : {profile_details.phn_number}</h4>
-        <h4>followers : {profile_details.no_of_followers}</h4>
-        <h4>following : {profile_details.no_of_following}</h4>
-        <h4>Posts : {post_details.length}</h4> */}
+        
         <div style={{
           'width': '30%',
           'marginTop': '20px',
@@ -86,8 +69,7 @@ const Profile = () => {
         }}>
           <Typography fontSize={33} color={username_color} >{profile_details.username}</Typography>
           <div style={{'marginTop' : '15px'}}>
-          <Typography fontSize={20} color={username_color} >{profile_details.first_name} {profile_details.last_name}</Typography>
-          {/* <Typography fontSize={20} color={username_color} >{profile_details.last_name}</Typography> */}
+          <Typography fontSize={20} color={username_color} >{profile_details.first_name} {profile_details.last_name}</Typography> 
           <Typography fontSize={20} color={username_color} >{profile_details.bio}</Typography>
           <Typography fontSize={20} color={username_color} >{profile_details.email}</Typography>
           <Typography fontSize={20} color={username_color} >{profile_details.phn_number}</Typography>
@@ -95,11 +77,6 @@ const Profile = () => {
           <div style={{ 'marginTop': '20px' }}>
             <Typography variant="overline" fontSize={'20px'}>posts</Typography>
           </div>
-          {/* <h4>First name : {profile_details.first_name}</h4>
-          <h4>Last name : {profile_details.last_name}</h4>
-          <h4>Bio : {profile_details.bio}</h4>
-          <h4>Email : {profile_details.email}</h4>
-          <h4>Phone number : {profile_details.phn_number}</h4> */}
 
         </div>
         <div style={{

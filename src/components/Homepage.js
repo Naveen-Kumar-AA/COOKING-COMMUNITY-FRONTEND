@@ -4,7 +4,6 @@ import { Navbar, NavDropdown, Nav, Button } from "react-bootstrap"
 import './Homepage.css'
 import './Profile'
 import axios from "axios"
-import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -13,9 +12,6 @@ const Homepage = () => {
         backgroundImage: `url('/assests/shutterstock_348320018.png')`,
         height: 400
     }
-    const [user_details, setUserDetails] = useState([])
-
-    const [postDetails, setPostDetails] = useState([]);
 
     const [searchResults, setSearchResults] = useState([])
 
@@ -61,9 +57,10 @@ const Homepage = () => {
     const searchRequest = () => {
         axios.get(`http://localhost:3001/search/${search}`).then((response) => {
             console.log(response.data);
-            const resp = response.data.map((user_id, index) => (
-                { label: user_id[0] }
-            ))
+            const resp = response.data.map((user_id, index) => {
+                console.log(user_id.username)
+                return { label: user_id.username }
+            })
             console.log(resp)
             setSearchResults(resp);
         }).catch((err) => {
@@ -74,6 +71,7 @@ const Homepage = () => {
 
     useEffect(() => {
         searchRequest();
+        // doSearchForProfiles();
     }, [search])
 
 
@@ -112,21 +110,7 @@ const Homepage = () => {
                                 <NavDropdown.Item onClick={() => navigate("/")}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        {/* <div className="ms-5">
-                            <div className="restaurantSelector">
-                                <input className="restaurantsinput ps-5 py-3 pe-2 w-100" type="text" placeholder="Search for recipes" onChange={(e)=>setSearch(e.target.value)}/>
-                                <div className="search-icon ms-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search "
-                                        viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div> */}
-                        {/* <div>
-                        <TextField id="outlined-basic" label="Search..." variant="outlined" onChange={(e)=>{setSearch(e.target.value)}}/>
-                        </div> */}
+                        
                         <Autocomplete
                             style={{ 'width': '200px' }}
                             disablePortal
@@ -134,28 +118,20 @@ const Homepage = () => {
                             options={searchResults}
                             onSelect={(e) => {
                                 setSearch(e.target.value);
-                                // console.log("On select", e.target.value);
                             }}
                             renderOption={(props, option) => (
                                 <li {...props} onClick={(e) => { e.preventDefault(); navigate(`/Homepage/${option.label}`); }}>{option.label}</li>
                             )}
-                            renderInput={(params) => <TextField {...params} label="Search..." onChange={(e) => { setSearchResults([]); setSearch(e.target.value); }} />}
+                            renderInput={(params) => <TextField {...params} label="Search..." onChange={(e) => { setSearch(e.target.value); }} />}
                         />
-                        {/* <div>
-                        <Button style={{'height' : '55px'}} onClick={()=>{
-                            doSearchForProfiles(search)
-                        }}>
-                            <SearchIcon/>
-                        </Button>
-                        </div> */}
                     </Navbar.Collapse>
                 </Navbar>
             </div>
             <div className='row' style={bgImage}>
                 <div className='col-12'>
-                    <p className='text-center p-5 title'>
+                    {/* <p className='text-center p-5 title'>
                         Welcome to our blog
-                    </p>
+                    </p> */}
                 </div>
             </div>
             <div class="container mb-5">
