@@ -43,7 +43,7 @@ const Post = ({ post }) => {
         setExpanded(!expanded);
     };
 
-    const [likesCount, setLikesCount] = useState(post.likes);
+    const [likesCount, setLikesCount] = useState(parseInt(post.likes));
     const [likeStatus, setLikeStatus] = useState(0)
 
     const likePost = (postID, userID) => {
@@ -51,6 +51,7 @@ const Post = ({ post }) => {
             postID: postID,
             userID: userID
         }
+        console.log(body)
         axios.post(`http://localhost:3001/like-post`, body).then((response) => {
             setLikesCount(likesCount + 1)
 

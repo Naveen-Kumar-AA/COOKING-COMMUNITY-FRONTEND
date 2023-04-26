@@ -13,7 +13,7 @@ const Login = ()=>{
             if(response.data[0])
                 navigate('/Homepage'); 
             else{
-                console.log("enter a valid username and password!!!")
+                console.log("enter a valid username and password!!!\npassword must consist of 1 lower case 1 upper case 1 numeric 1 spl char and length should be within 5-30.")
             }
         
         }
@@ -43,7 +43,7 @@ const Login = ()=>{
                         <h2 className='text-center'>Login</h2>
                         <div className='formGroup w-100 p-3'>
                             <label for="username" className='form-label'>Username</label>
-                            <input type="text" className="form-control " id ="username" placeholder="Enter your Email ID" onChange={(e)=>setUssername(e.target.value)}/>
+                            <input type="text" className="form-control " id ="username" placeholder="Enter your username" onChange={(e)=>setUssername(e.target.value)}/>
                             <br/>
                             <label for="pswd" className="form-label">Password</label>
                             <input type="password" className="form-control" id ="pswd" placeholder='Enter your password' onChange={(e)=>setPassword(e.target.value)}/>
